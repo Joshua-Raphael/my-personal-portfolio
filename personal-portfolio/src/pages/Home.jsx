@@ -9,7 +9,6 @@ import { ContactSection } from "../components/ContactSection";
 import SlideShow from "../components/SlideShow";
 import { Footer } from "../components/Footer";
 import Documentary from "../components/Documentary";
-import ScrollGallery from "../components/ScrollGallery";
 import Certification from "../components/Certification";
 
 export const Home = () => {

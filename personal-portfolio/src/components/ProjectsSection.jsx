@@ -1,8 +1,8 @@
 
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
-import clinicMgt from "../../public/projects/clinicMgt.png";
-import partnership from "../../public/projects/partnership.png";
-import quizApp from "../../public/projects/quiz.png";
+import clinicMgt from "../images/projects/clinicMgt.png";
+import partnership from "../images/projects/partnership.png";
+import quizApp from "../images/projects/quiz.png";
 
 const projects = [
   {

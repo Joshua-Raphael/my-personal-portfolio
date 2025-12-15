@@ -4,8 +4,6 @@ import img2 from "../images/dynata.png";
 import img3 from "../images/rivan.png";
 import img4 from "../images/mata.png";
 import img5 from "../images/tarsier117.png";
-import img6 from "../assets/Images/6.png";
-import img7 from "../assets/Images/7.png";
 import { FaFileAlt } from "react-icons/fa"; // Journal icon
 import JournalModal from "./JournalModal";
 
