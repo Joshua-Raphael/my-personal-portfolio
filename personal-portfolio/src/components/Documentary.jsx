@@ -9,6 +9,7 @@ import documentary6 from "../images/documentary/documentary6.webp"
 import documentary8 from "../images/documentary/documentary8.webp"
 import documentary9 from "../images/documentary/documentary9.webp"
 import documentary10 from "../images/documentary/documentary10.webp"
+import documentary11 from "../images/documentary/documentary11.webp"
 
 const images = [
   {
@@ -48,7 +49,7 @@ const images = [
     className: "",
   },
   {
-    src: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/74321/notre-dame-river-boat.jpg",
+    src: documentary11,
     className: "slower",
   },
   {
@@ -70,28 +71,21 @@ export default function Documentary() {
   }, [isModalOpen]);
 
   return (
-    <section id="docu" className="relative h-screen overflow-visible">
+    <section id="docu" className="relative h-screen overflow-hidden">
 
         <h2 className="text-3xl md:text-4xl font-bold text-center mt-10">
         Tour <span className="text-primary"> Documentaries </span>
       </h2>
-      <p className="text-center text-sm text-muted-foreground mb-4">Hover images and scroll horizontally to view more.</p>
+      <p className="text-center text-sm text-muted-foreground mb-4">Hover the images and scroll to view more horizontally.</p>
 
-      <div
-        className="horizontal-scroll-wrapper overflow-x-auto flex flex-nowrap gap-4 px-4 scroll-smooth"
-        style={{ WebkitOverflowScrolling: "touch", touchAction: "pan-x" }}
-      >
+      <div className="horizontal-scroll-wrapper overflow-x-auto flex gap-4 px-4 scroll-smooth" style={{ WebkitOverflowScrolling: "touch" }}>
         {images.map((img, index) => (
-          <div
-            key={index}
-            className={`img-wrapper ${img.className} `}
-            style={{ flex: "0 0 auto", minWidth: "75vw", maxWidth: "95vw" }}
-          >
+          <div key={index} className={`img-wrapper ${img.className}`} style={{ flex: "0 0 auto" }}>
             <div className="img-inner">
               <img
                 src={img.src}
                 alt={`documentary-${index}`}
-                className="cursor-pointer w-full h-auto block max-h-[60vh] object-contain"
+                className="cursor-pointer"
                 onClick={(e) => {
                   e.stopPropagation();
                   setModalSrc(img.src);
