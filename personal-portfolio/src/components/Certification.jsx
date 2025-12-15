@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import agdaoCoop from "../images/certificates/agdaoCoop.png";
-import codechum from "../images/certificates/codechum.png";
-import watt from "../images/certificates/watt.png";
+import agdaoCoop from "../images/certificates/agdaoCoop.webp";
+import codechum from "../images/certificates/codechum.webp";
+import watt from "../images/certificates/watt.webp";
 
 // Certification section
 // Each card contains two rows: top row = certification image, bottom row = title/issuer

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import img1 from "../images/up.jpg";
-import img2 from "../images/dynata.png";
-import img3 from "../images/rivan.png";
-import img4 from "../images/mata.png";
-import img5 from "../images/tarsier117.png";
+import img1 from "../images/up.webp";
+import img2 from "../images/dynata.webp";
+import img3 from "../images/rivan.webp";
+import img4 from "../images/mata.webp";
+import img5 from "../images/tarsier117.webp";
 import { FaFileAlt } from "react-icons/fa"; // Journal icon
 import JournalModal from "./JournalModal";
 
@@ -29,14 +29,37 @@ export default function SlideShow() {
 
   // Preload slideshow images so journal modal shows images immediately
   useEffect(() => {
+    const preloads = [];
+
     slidesData.forEach((s) => {
       try {
+        // Image object cache
         const img = new Image();
         img.src = s.img;
+        preloads.push(img);
+
+        // Also add a <link rel="preload"> to hint the browser to prioritise
+        const link = document.createElement("link");
+        link.rel = "preload";
+        link.as = "image";
+        link.href = s.img;
+        document.head.appendChild(link);
+        preloads.push(link);
       } catch (e) {
         // ignore
       }
     });
+
+    return () => {
+      // cleanup any inserted link elements
+      preloads.forEach((p) => {
+        if (p && p.rel === "preload") {
+          try {
+            document.head.removeChild(p);
+          } catch {}
+        }
+      });
+    };
   }, []);
 
   console.log("Modal Data:", modalData);
@@ -82,6 +105,7 @@ export default function SlideShow() {
               <img
                 src={slide.img}
                 alt={slide.name}
+                loading="eager"
                 className="w-full h-full object-cover rounded-md"
               />
               {!isActive && (

@@ -1,9 +1,9 @@
 import React from "react";
-import journal1 from "../../images/journal1.png";
-import journal2 from "../../images/journal2.png";
-import journal3 from "../../images/journal3.png"; 
-import journal4 from "../../images/journal4.png";
-import journal5 from "../../images/journal5.png";
+import journal1 from "../../images/journal1.webp";
+import journal2 from "../../images/journal2.webp";
+import journal3 from "../../images/journal3.webp"; 
+import journal4 from "../../images/journal4.webp";
+import journal5 from "../../images/journal5.webp";
 
 
 export const journalEntries = [
