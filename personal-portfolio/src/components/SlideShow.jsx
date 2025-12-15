@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import img1 from "../images/up.jpg";
 import img2 from "../images/dynata.png";
 import img3 from "../images/rivan.png";
@@ -26,6 +26,18 @@ export default function SlideShow() {
     setModalData(slide);
     setIsModalOpen(true);
   };
+
+  // Preload slideshow images so journal modal shows images immediately
+  useEffect(() => {
+    slidesData.forEach((s) => {
+      try {
+        const img = new Image();
+        img.src = s.img;
+      } catch (e) {
+        // ignore
+      }
+    });
+  }, []);
 
   console.log("Modal Data:", modalData);
   console.log("Modal Open:", isModalOpen);

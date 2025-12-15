@@ -35,6 +35,7 @@ const JournalModal = ({ id, closeModal }) => {
             <img
               src={entry.img}
               alt="Journal"
+              loading="eager"
               className="w-full h-[600px] object-cover rounded-lg shadow-md"
             />
           </div>
