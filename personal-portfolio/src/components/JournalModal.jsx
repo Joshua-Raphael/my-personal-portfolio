@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { journalEntries } from "./journalData/journalData";
 import { X } from "lucide-react";
 
@@ -12,6 +12,14 @@ const JournalModal = ({ id, closeModal }) => {
       closeModal();
     }
   };
+
+  // Image loading state for skeleton
+  const [imgLoaded, setImgLoaded] = useState(false);
+
+  useEffect(() => {
+    // reset when modal opens for a different id
+    setImgLoaded(false);
+  }, [id]);
 
   return (
     <div
@@ -31,12 +39,22 @@ const JournalModal = ({ id, closeModal }) => {
         <div className="flex gap-8">
 
           {/* LEFT — FIXED SIZE IMAGE */}
-          <div className="w-1/2">
+          <div className="w-1/2 relative">
+            {!imgLoaded && (
+              <div
+                className="animate-pulse w-full h-[600px] rounded-lg bg-gray-200 dark:bg-slate-700 flex items-center justify-center"
+                aria-hidden="true"
+              >
+                <div className="w-24 h-24 bg-gray-300 dark:bg-slate-600 rounded" />
+              </div>
+            )}
+
             <img
               src={entry.img}
               alt="Journal"
-              loading="eager"
-              className="w-full h-[600px] object-cover rounded-lg shadow-md"
+              onLoad={() => setImgLoaded(true)}
+              onError={() => setImgLoaded(true)}
+              className={`w-full h-[600px] object-cover rounded-lg shadow-md ${imgLoaded ? "block" : "hidden"}`}
             />
           </div>
 
