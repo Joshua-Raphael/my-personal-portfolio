@@ -26,40 +26,20 @@ const JournalModal = ({ id, closeModal }) => {
       onClick={handleBackdropClick}
       className="fixed inset-0 flex justify-center items-center bg-black/50 backdrop-blur-sm z-50"
     >
-      <div className="relative bg-card w-11/12 md:w-3/4 lg:w-2/3 p-8 rounded-lg shadow-xl">
+      <div className="relative w-11/12 md:w-3/4 lg:w-2/3 p-0 md:p-8 bg-transparent md:bg-card md:rounded-lg rounded-none md:shadow-xl shadow-none max-h-screen overflow-auto">
 
         {/* X ICON */}
         <button
           onClick={closeModal}
-          className="absolute top-4 right-4 text-primary hover:text-primary transition"
+          className="absolute top-4 right-4 sm:top-2 sm:right-2 text-primary hover:text-primary transition"
         >
           <X size={26} />
         </button>
 
-        <div className="flex gap-8">
+        <div className="flex flex-col md:flex-row gap-8">
 
-          {/* LEFT — FIXED SIZE IMAGE */}
-          <div className="w-1/2 relative">
-            {!imgLoaded && (
-              <div
-                className="animate-pulse w-full h-[600px] rounded-lg bg-gray-200 dark:bg-slate-700 flex items-center justify-center"
-                aria-hidden="true"
-              >
-                <div className="w-24 h-24 bg-gray-300 dark:bg-slate-600 rounded" />
-              </div>
-            )}
-
-            <img
-              src={entry.img}
-              alt="Journal"
-              onLoad={() => setImgLoaded(true)}
-              onError={() => setImgLoaded(true)}
-              className={`w-full h-[600px] object-cover rounded-lg shadow-md ${imgLoaded ? "block" : "hidden"}`}
-            />
-          </div>
-
-          {/* RIGHT — INFO + OBSERVATIONS + LEARNINGS */}
-          <div className="w-1/2 overflow-y-auto max-h-[600px] pr-2">
+          {/* INFO — hidden on mobile, shown on md+ */}
+          <div className="hidden md:block order-1 md:order-2 w-full md:w-1/2 overflow-y-auto max-h-[60vh] md:max-h-[600px] pr-2">
 
             {/* Top Details */}
             <h2 className="text-2xl font-bold text-primary">{entry.company}</h2>
@@ -80,6 +60,27 @@ const JournalModal = ({ id, closeModal }) => {
               {entry.learnings}
             </p>
 
+          </div>
+
+          {/* IMAGE — on mobile shown below text, on desktop shown left */}
+          <div className="order-2 md:order-1 w-full h-full md:w-1/2 relative">
+            {!imgLoaded && (
+              <div
+                className="animate-pulse w-full h-[70vh] md:h-[80vh] rounded-none md:rounded-lg bg-transparent md:bg-gray-200 md:dark:bg-slate-700 flex items-center justify-center"
+                aria-hidden="true"
+              >
+                <div className="w-24 h-24 bg-gray-300 dark:bg-slate-600 rounded" />
+              </div>
+            )}
+
+            <img
+              src={entry.img}
+              alt="Journal"
+              loading="eager"
+              onLoad={() => setImgLoaded(true)}
+              onError={() => setImgLoaded(true)}
+              className={`w-full h-[70vh] md:h-[80vh] object-contain md:object-cover md:rounded-lg rounded-none md:shadow-md shadow-none ${imgLoaded ? "block" : "hidden"}`}
+            />
           </div>
         </div>
       </div>
