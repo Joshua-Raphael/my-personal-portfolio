@@ -1,12 +1,15 @@
 
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import clinicMgt from "../../public/projects/clinicMgt.png";
+import partnership from "../../public/projects/partnership.png";
+import quizApp from "../../public/projects/quiz.png";
 
 const projects = [
   {
     id: 1,
     title: "Clinic Management System",
     description: "A desktop-based clinic management system built using Java and Java Swing, using Notepad (.txt) files for data storage.",
-    image: "/projects/clinicMgt.png",
+    image: clinicMgt,
     tags: ["Java", "Java Swing", "FIle Storage"],
     demoUrl: "https://drive.google.com/file/d/1kBkEu6DfdOMek8P7nu_68tRddW_lBvI0/view?usp=drive_link",
     githubUrl: "",
@@ -16,7 +19,7 @@ const projects = [
     title: "OSA Partnership System",
     description:
       "A web-based system for managing partnerships, allowing multiple admins to handle entries based on their assigned roles.",
-    image: "/projects/partnership.png",
+    image: partnership,
     tags: ["React", "TailwindCSS", "DRF"],
     demoUrl: "",
     githubUrl: "https://github.com/Joshua-Raphael/hcdc-partnership",
@@ -26,7 +29,7 @@ const projects = [
     title: "Quiz App",
     description:
       "A quiz app that uses an API to generate questions and tracks scores through a Firebase-powered leaderboard.",
-    image: "/projects/quiz.png",
+    image: quizApp,
     tags: ["React Native", "Firebase", "Trivia API"],
     demoUrl: "",
     githubUrl: "https://github.com/Joshua-Raphael/quizApp",
