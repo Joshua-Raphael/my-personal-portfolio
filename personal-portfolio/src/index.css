@@ -1,0 +1,301 @@
+@import "tailwindcss";
+
+@theme {
+  --color-border: hsl(var(--border));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-card: hsl(var(--card));
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.7s ease-out forwards;
+  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
+  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
+  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
+  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
+  --animate-meteor: meteor 5s linear infinite;
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes pulse-subtle {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  @keyframes meteor {
+    0% {
+      transform: rotate(215deg) translateX(0);
+      opacity: 1;
+    }
+    70% {
+      opacity: 1;
+    }
+    100% {
+      transform: rotate(215deg) translateX(-500px);
+      opacity: 0;
+    }
+  }
+}
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+
+    --primary: 250 47% 60%;
+    --primary-foreground: 210 40% 98%;
+
+    --border: 214 32% 91%;
+  }
+
+  .dark {
+    --background: 222 47% 4%;
+    --foreground: 213 31% 91%;
+
+    --card: 222 47% 8%;
+
+    --primary: 149, 76%, 40%;
+    --primary-foreground: 213 31% 91%;
+
+    --border: 217 33% 20%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+
+  @media (width >= 640px) {
+    max-width: 640px;
+  }
+  @media (width >= 768px) {
+    max-width: 768px;
+  }
+  @media (width >= 1024px) {
+    max-width: 1024px;
+  }
+  @media (width >= 1280px) {
+    max-width: 1280px;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
+}
+
+@utility text-glow {
+  @apply relative;
+  text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+@utility card-hover {
+  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
+}
+
+@utility gradient-border {
+  @apply relative rounded-md;
+  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
+  background-clip: padding-box;
+  border: 1px solid transparent;
+}
+
+@utility cosmic-button {
+  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
+         transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
+         hover:scale-105 active:scale-95;
+}
+
+@utility star {
+  @apply absolute rounded-full bg-white;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
+}
+
+@utility meteor {
+  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
+  box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0.3);
+}
+
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+
+/* Custom Banner Styles Converted for Tailwind */
+
+/* Background banner image */
+@layer utilities {
+  .banner-bg {
+    background-image: url('/assets/img/banner-bg.png');
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+}
+
+/* Floating animation */
+@keyframes updown {
+  0% {
+      transform: translateY(-20px);
+  }
+  50% {
+      transform: translateY(20px);
+  }
+  100% {
+      transform: translateY(-20px);
+  }
+}
+
+@layer utilities {
+  .animate-updown {
+    animation: updown 3s linear infinite;
+  }
+
+  /* Text cursor for rotating text */
+  .cursor-border {
+    border-right: 0.08em solid #666;
+  }
+}
+
+/* Custom Slide SHow animation keyframes */
+@keyframes animate {
+  from {
+    opacity: 0;
+    transform: translateY(100px);
+    filter: blur(33px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Horizontal Parallax Scroll ===== */
+@layer utilities {
+  .horizontal-scroll-wrapper {
+    @apply flex flex-col items-center overflow-y-auto overflow-x-hidden;
+    width: 70vh;
+    height: 100vw;
+    transform: rotate(-90deg) translate3d(0, -70vh, 0);
+    transform-origin: right top;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    /* padding-bottom: 10rem; */
+    /* hide native scrollbars while preserving scroll functionality */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .horizontal-scroll-wrapper::-webkit-scrollbar {
+    display: none; /* WebKit browsers */
+  }
+
+  .img-wrapper {
+    min-height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-origin: 50% 50%;
+    transform: rotate(90deg) translateZ(0.1px) scale(0.9) translateY(-3vh);
+    transition: min-height 0.8s ease;
+  }
+
+  .img-wrapper:hover {
+    min-height: 65vh;
+  }
+
+  .img-inner {
+    background: #efecdb;
+    padding: 1vh;
+    box-shadow: 0 10px 50px rgba(95, 47, 17, 0.5);
+  }
+
+  .img-wrapper img {
+    max-width: 45vh;
+    max-height: 50vh;
+    object-fit: cover;
+    /* show original image colors */
+    filter: none;
+    transition: filter 0.5s ease;
+  }
+
+
+  /* ===== Parallax depth variants ===== */
+
+  .slower {
+    transform: rotate(90deg) translateZ(-0.2px) scale(1.1) translateY(-10vh);
+  }
+
+  .slower2 {
+    transform: rotate(90deg) translateZ(-0.3px) scale(1.3) translateY(2vh);
+  }
+
+  .slower-down {
+    transform: rotate(90deg) translateZ(-0.2px) scale(1.1) translateY(16vh);
+  }
+
+  .faster {
+    transform: rotate(90deg) translateZ(0.15px) scale(0.8) translateY(14vh);
+  }
+
+  .faster1 {
+    transform: rotate(90deg) translateZ(0.05px) scale(0.8) translateY(10vh);
+  }
+
+  .vertical {
+    transform: rotate(90deg) translateZ(-0.15px) scale(1.15);
+  }
+
+  .last {
+    transform: rotate(90deg) translateZ(-0.2px) scale(1.1) translateX(25vh)
+      translateY(-8vh);
+  }
+}
+
+
